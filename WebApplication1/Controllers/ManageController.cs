@@ -18,6 +18,7 @@ namespace WebApplication1.Controllers
 
         public ManageController()
         {
+            /*pushing*/
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
