@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
     public class Job
     {
-        public string employer { get; set; }
-        public string title { get; set; }
-        public string description { get; set;}
-        public Boolean interested { get; set; }
+        [Key]
+        public string Employer { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set;}
+        public Boolean Interested { get; set; }
     }
     public class JobDBContext : DbContext
     {
