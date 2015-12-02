@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<WebApplication1.Models.Job>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Jobs";
 }
 
-<h2>Index</h2>
+<h2>Jobs</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -40,6 +40,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Interested)
         </td>
+
 
     </tr>
 }
