@@ -15,7 +15,7 @@ namespace WebApplication1.Models
         public string Description { get; set;}
         public Boolean Interested { get; set; }
     }
-    public class JobDBContext : DbContext
+    public class DefaultConnection : DbContext
     {
         public DbSet<Job> Jobs { get; set;}
     }
