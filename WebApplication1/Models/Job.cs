@@ -14,6 +14,7 @@ namespace WebApplication1.Models
         public string Title { get; set; }
         public string Description { get; set;}
         public Boolean Interested { get; set; }
+        public string email { get; set; }
     }
     public class JobDBContext : DbContext
     {
