@@ -1,5 +1,6 @@
 namespace WebApplication1.Migrations
 {
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -12,20 +13,34 @@ namespace WebApplication1.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WebApplication1.Models.ApplicationDbContext context)
+        protected void Seed(JobDBContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.Jobs.AddOrUpdate(i => i.Employer,
+                new Job
+                {
+                    Employer = "Michaels",
+                    Title = "Cashier",
+                    Description = "work register and answer phone",
+                    Email = "info@michaels.com"
+                },
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+                 new Job
+                 {
+                     Employer = "The Limited",
+                     Title = "Sales Associate",
+                     Description = "work the wardrobe and sales floor",
+                     Email = "info@thelimited.com"
+                 },
+
+                 new Job
+                 {
+                     Employer = "Walmart",
+                     Title = "Manager",
+                     Description = "manage customer service",
+                     Email = "info@walmart.com"
+                 }
+           );
+
         }
     }
 }
