@@ -15,8 +15,12 @@ namespace WebApplication1.Models
         [Key]
         public string Employer { get; set; }
         public string Title { get; set; }
-        public string Description { get; set;}
+        public string Description { get; set; }
         public string Email { get; set; }
+        public string PayRate { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string ZipCode { get; set; }
     }
     public class JobDBContext : DbContext
     {
