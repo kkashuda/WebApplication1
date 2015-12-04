@@ -143,7 +143,7 @@ namespace WebApplication1.Controllers
             //Send Email
             var message = new MailMessage();
             message.To.Add(new MailAddress("emilyhuynh101@gmail.com"));  // replace with valid value 
-            message.From = new MailAddress("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com");  // replace with valid value
+            message.From = new MailAddress("shedges1995@gmail.com");  // replace with valid value
             message.Subject = "Thanks for your message!";
             message.Body = string.Format("<p><b>From:</b> {0} ({1})</p><p><b>Mesage:</b> {2}</p>", vm.Name, vm.Email, vm.Message);
             message.IsBodyHtml = true;
@@ -152,12 +152,12 @@ namespace WebApplication1.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com",  // replace with valid value
-                    Password = "PJ7sw43N8Ev77L2"  // replace with valid value
+                    UserName = "shedges1995@gmail.com",  // replace with valid value
+                    Password = "inuyasha12"  // replace with valid value
                 };
                 smtp.Credentials = credential;
-                smtp.Host = "smtp.sendgrid.net";
-                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 465;
                 smtp.EnableSsl = true;
                 await smtp.SendMailAsync(message);
             }
