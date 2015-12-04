@@ -12,28 +12,24 @@ namespace WebApplication1.Models
 {
     public class Job
     {
-        [Key, Required]
+        [Key]
         public string Employer { get; set; }
 
-        [Required, Display(Name = "Job Title")]
+        [Display(Name = "Job Title")]
         public string Title { get; set; }
 
-        [Required, Display(Name = "Job Description")]
+        [Display(Name = "Job Description")]
         public string Description { get; set; }
 
-        [Required, Display(Name = "Your Email Address")]
+        [Display(Name = "Your Email Address")]
         public string Email { get; set; }
         
         [Display(Name = "Pay Rate")]
         public string PayRate { get; set; }
-
-        [Required]
         public string City { get; set; }
-
-        [Required]
         public string State { get; set; }
 
-        [Required, Display(Name = "Zip Code")]
+        [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
     }
 
