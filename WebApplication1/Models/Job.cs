@@ -12,7 +12,7 @@ namespace WebApplication1.Models
 {
     public class Job
     {
-        [Key]
+        [Key, Required]
         public string Employer { get; set; }
 
         [Required, Display(Name = "Job Title")]
@@ -24,6 +24,7 @@ namespace WebApplication1.Models
         [Required, Display(Name = "Your Email Address")]
         public string Email { get; set; }
         
+        [Display(Name = "Pay Rate")]
         public string PayRate { get; set; }
 
         [Required]
@@ -35,6 +36,7 @@ namespace WebApplication1.Models
         [Required, Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
     }
+
     public class JobDBContext : DbContext
     {
         public DbSet<Job> Jobs { get; set;}
