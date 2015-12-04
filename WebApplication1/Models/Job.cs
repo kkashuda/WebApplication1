@@ -14,12 +14,25 @@ namespace WebApplication1.Models
     {
         [Key]
         public string Employer { get; set; }
+
+        [Required, Display(Name = "Job Title")]
         public string Title { get; set; }
+
+        [Required, Display(Name = "Job Description")]
         public string Description { get; set; }
+
+        [Required, Display(Name = "Your Email Address")]
         public string Email { get; set; }
+        
         public string PayRate { get; set; }
+
+        [Required]
         public string City { get; set; }
+
+        [Required]
         public string State { get; set; }
+
+        [Required, Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
     }
     public class JobDBContext : DbContext
