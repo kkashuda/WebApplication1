@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
+using System.Net.Mail;
+using SendGrid;
 
 namespace WebApplication1.Models
 {

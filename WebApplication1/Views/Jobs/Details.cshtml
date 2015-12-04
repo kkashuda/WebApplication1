@@ -1,62 +1,46 @@
-﻿@model WebApplication1.Models.Job
+﻿@using System;
+@using System.Net;
+@using System.Net.Mail;
+@using SendGrid;
+@model WebApplication1.Models.Job
+
 
 @{
     ViewBag.Title = "Details";
-}
+    var emailAddress = Model.Email;
 
-<script language="JavaScript">
-var frmvalidator  = new Validator("contactform");
-frmvalidator.addValidation("name","req","Please provide your name");
-frmvalidator.addValidation("email","req","Please provide your email");
-frmvalidator.addValidation("email","email",
-  "Please enter a valid email address");
+    }
+
+@section scripts { 
+
+<script type="text/javascript">
+        
+
+    function sendEmail() {
+        // Create the email object first, then add the properties.
+        var myMessage; new SendGridMessage();
+        myMessage.AddTo(@emailAddress);//recipient
+        myMessage.From = new MailAddress("john@example.com", "John Smith");
+        myMessage.Subject = "Testing the SendGrid Library";
+        myMessage.Text = "Hello World!";
+
+        // Create credentials, specifying your user name and password.
+        var credentials = new NetworkCredential("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com", "PJ7sw43N8Ev77L2");
+
+        // Create an Web transport for sending email.
+        var transportWeb = new Web(credentials);
+
+        // Send the email, which returns an awaitable task.
+        transportWeb.DeliverAsync(myMessage);
+
+        // If developing a Console Application, use the following
+        // transportWeb.DeliverAsync(mail).Wait();
+    }
 </script>
 
-<?php
-$errors = '';
-$myemail = '@Html.DisplayFor(model => model.Email)';
-if(empty($_POST['name'])  || 
-   empty($_POST['email']) || 
-   empty($_POST['message']))
-{
-    $errors .= "\n Error: all fields are required";
-}
- 
-$name = $_POST['name']; 
-$email_address = $_POST['email']; 
-$message = $_POST['message']; 
- 
-if (!preg_match(
-"/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i", $email_address))
-{
-    $errors .= "\n Error: Invalid email address";
 }
 
-if( empty($errors))
 
-{
-
-$to = $myemail;
-
-$email_subject = "Contact form submission: $name";
-
-$email_body = "You have received a new message. ".
-
-" Here are the details:\n Name: $name \n ".
-
-"Email: $email_address\n Message \n $message";
-
-$headers = "From: $myemail\n";
-
-$headers .= "Reply-To: $email_address";
-
-mail($to,$email_subject,$email_body,$headers);
-
-
-header('Location: contact-form-thank-you.html');
-
-}
-?>
 
 <h2>Apply to Job</h2>
 
@@ -84,20 +68,7 @@ header('Location: contact-form-thank-you.html');
     </dl>
 </div>
 
-<form method="post" name="contact_form"
-      action="contact-form-handler.php">
-    Your Name:
-    <input type="text" name="name">
-
-    Email Address:
-    <input type="text" name="email">
-
-    Message:
-    <textarea name="message"></textarea>
-
-    <input type="submit" value="Submit">
-</form>  
-
+<p><a href="#" onClick="sendEmail();">Click Me</a></p>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Employer }) |
     @Html.ActionLink("Back to List", "Index")
