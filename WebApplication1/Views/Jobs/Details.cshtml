@@ -1,43 +1,11 @@
 ﻿
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Request for Assistance</title>
-</head>
-<body>
-    <h2>Submit Email Request for Assistance</h2>
-    <form method="post" action="@Url.Action("sendEmail","JobsController")">
-        <div>
-            Your name:
-            <input type="text" name="customerName" />
-        </div>
-
-        <div>
-            Your email address:
-            <input type="text" name="customerEmail" />
-        </div>
-
-        <div>
-            Details about your problem: <br />
-            <textarea name="customerRequest" cols="45" rows="4"></textarea>
-        </div>
-
-        <div>
-            <input type="submit" value="Submit" />
-        </div>
-    </form>
-</body>
-</html>
-
-
-
-@*
 @using System;
 @using System.Net;
 @using System.Net.Mail;
 @using SendGrid;
-@model WebApplication1.Models.Job
+@model Tuple<WebApplication1.Models.Job, WebApplication1.Models.ContactViewModel>
 
+@*@model WebApplication1.Models.DetailParentModel*@
 
 @{
     ViewBag.Title = "Details";
@@ -52,70 +20,80 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(tuple => Model.Item1.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(tuple => Model.Item1.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(tuple => Model.Item1.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(tuple => Model.Item1.Description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PayRate)
+            @Html.DisplayNameFor(tuple => Model.Item1.PayRate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PayRate)
+            @Html.DisplayFor(tuple => Model.Item1.PayRate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(tuple => Model.Item1.City)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(tuple => Model.Item1.City)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayNameFor(tuple => Model.Item1.State)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.State)
+            @Html.DisplayFor(tuple => Model.Item1.State)
         </dd>
         
 
     </dl>
 </div>
-<form method="post" action="ProcessRequest.cshtml">
-    <div>
-        Your name:
-        <input type="text" name="customerName" />
+@using (Html.BeginForm(Model.Item2))
+{
+    <div class="form-group">
+        @Html.LabelFor(tuple => Model.Item2.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(tuple => Model.Item2.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(tuple => Model.Item2.Name, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    <div>
-        Your email address:
-        <input type="text" name="customerEmail" />
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(tuple => Model.Item2.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(tuple => Model.Item2.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(tuple => Model.Item2.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div>
-        Details about your problem: <br />
-        <textarea name="customerRequest" cols="45" rows="4"></textarea>
-    </div>
-
-    <div>
-        <input type="submit" value="Submit" />
-    </div>
-</form>
+            <div class="form-group">
+                @Html.LabelFor(tuple => Model.Item2.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(tuple => Model.Item2.Message, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(tuple => Model.Item2.Message, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Send" class="btn btn-default" />
+                </div>
+            </div>
+}
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Employer }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Employer }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-*@

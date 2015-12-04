@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -105,34 +107,7 @@ namespace WebApplication1.Controllers
             }
             return View(job);
         }
-        public ActionResult sendEmail() {
-
-            var customerName = Request["customerName"];
-            var customerEmail = Request["customerEmail"];
-            var customerRequest = Request["customerRequest"];
-            var errorMessage = "";
-            var debuggingFlag = false;
-            try
-            {
-                // Initialize WebMail helper
-                WebMail.SmtpServer = "smtp.sendgrid.net";
-                WebMail.SmtpPort = 25;
-                WebMail.UserName = "azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com";
-                WebMail.Password = "PJ7sw43N8Ev77L2";
-                WebMail.From = "avhedges@crimson.ua.edu";
-
-                // Send email
-                WebMail.Send(to: customerEmail,
-                    subject: "Help request from - " + customerName,
-                    body: customerRequest
-                );
-            }
-            catch (Exception ex)
-            {
-                errorMessage = ex.Message;
-            }
-            return View();
-        }
+        
 
         // POST: Jobs/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -152,6 +127,40 @@ namespace WebApplication1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Contact(ContactViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            //Send Email
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("emilyhuynh101@gmail.com"));  // replace with valid value 
+            message.From = new MailAddress("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com");  // replace with valid value
+            message.Subject = "Thanks for your message!";
+            message.Body = string.Format("<p><b>From:</b> {0} ({1})</p><p><b>Mesage:</b> {2}</p>", vm.Name, vm.Email, vm.Message);
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com",  // replace with valid value
+                    Password = "PJ7sw43N8Ev77L2"  // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.sendgrid.net";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+            }
+
+
+            return RedirectToAction("Thankyou");
         }
     }
 }
