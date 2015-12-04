@@ -1,11 +1,5 @@
 ﻿
 @{
-    ViewBag.Title = "ProcessRequest";
-}
-
-<h2>ProcessRequest</h2>
-
-@{
     var customerName = Request["customerName"];
     var customerEmail = Request["customerEmail"];
     var customerRequest = Request["customerRequest"];
@@ -14,11 +8,11 @@
     try
     {
         // Initialize WebMail helper
-        WebMail.SmtpServer = "your-SMTP-host";
+        WebMail.SmtpServer = "smtp.sendgrid.net";
         WebMail.SmtpPort = 25;
-        WebMail.UserName = "your-user-name-here";
-        WebMail.Password = "your-account-password";
-        WebMail.From = "your-email-address-here";
+        WebMail.UserName = "emailer";
+        WebMail.Password = "HelloWorld!1";
+        WebMail.From = "avhedges@gmail.com";
 
         // Send email
         WebMail.Send(to: customerEmail,
