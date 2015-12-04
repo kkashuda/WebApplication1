@@ -63,7 +63,7 @@
     </dl>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(Model.Item2))
 {
     <div class="form-group">
         @Html.LabelFor(tuple => tuple.Item2.Name, htmlAttributes: new { @class = "control-label col-md-2" })
