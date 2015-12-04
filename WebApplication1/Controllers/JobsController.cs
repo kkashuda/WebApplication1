@@ -36,7 +36,7 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
             //return View(job);
-            var tuple = new Tuple<Job, ContactViewModel>(new Job(), new ContactViewModel());
+            var tuple = new Tuple<Job, ContactViewModel>(job, new ContactViewModel());
             return View(tuple);
         
     }
