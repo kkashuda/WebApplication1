@@ -1,8 +1,46 @@
-﻿@model WebApplication1.Models.Job
+﻿@using System;
+@using System.Net;
+@using System.Net.Mail;
+@using SendGrid;
+@model WebApplication1.Models.Job
+
 
 @{
     ViewBag.Title = "Details";
+    var emailAddress = Model.Email;
+
 }
+
+@section scripts {
+
+    <script type="text/javascript">
+
+
+    function sendEmail() {
+        // Create the email object first, then add the properties.
+        var myMessage; new SendGridMessage();
+        myMessage.AddTo(@emailAddress);//recipient
+        myMessage.From = new MailAddress("john@example.com", "John Smith");
+        myMessage.Subject = "Testing the SendGrid Library";
+        myMessage.Text = "Hello World!";
+
+        // Create credentials, specifying your user name and password.
+        var credentials = new NetworkCredential("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com", "PJ7sw43N8Ev77L2");
+
+        // Create an Web transport for sending email.
+        var transportWeb = new Web(credentials);
+
+        // Send the email, which returns an awaitable task.
+        transportWeb.DeliverAsync(myMessage);
+
+        // If developing a Console Application, use the following
+        // transportWeb.DeliverAsync(mail).Wait();
+    }
+    </script>
+
+}
+
+
 
 <h2>Apply to Job</h2>
 
@@ -25,44 +63,12 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-       
-        
-        
-         @*
-        <dt>
-            @Html.DisplayNameFor(model => model.Interested)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Interested)
-        </dd>*@
 
     </dl>
 </div>
 
- <form method="post" action="ProcessRequest.cshtml">
-    <div>
-        Your name:
-        <input type="text" name="customerName" />
-    </div>
-
-    <div>
-        Your email address:
-        <input type="text" name="customerEmail" />
-    </div>
-
-    <div>
-        Details about your problem: <br />
-        <textarea name="customerRequest" cols="45" rows="4"></textarea>
-    </div>
-
-    <div>
-        <input type="submit" value="Submit" />
-    </div>
-  </form>
-
-
-
+<p><a href="#" onClick="sendEmail();">Click Me</a></p>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Employer }) |
     @Html.ActionLink("Back to List", "Index")
