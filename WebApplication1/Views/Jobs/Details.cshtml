@@ -62,7 +62,8 @@
 
     </dl>
 </div>
-@using (Html.BeginForm(Model.Item2))
+@*
+@using (Html.BeginForm(Model))
 {
     <div class="form-group">
         @Html.LabelFor(model => Model.Item2.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -93,6 +94,7 @@
                 </div>
             </div>
 }
+    *@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Employer }) |
     @Html.ActionLink("Back to List", "Index")
