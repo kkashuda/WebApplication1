@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Apply to Job</h2>
 
 <div>
     <h4>Job</h4>
@@ -25,7 +25,10 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-        @*
+       
+        
+        
+         @*
         <dt>
             @Html.DisplayNameFor(model => model.Interested)
         </dt>
@@ -36,6 +39,30 @@
 
     </dl>
 </div>
+
+<form method="post" action="ProcessRequest.cshtml">
+    <div>
+        Your name:
+        <input type="text" name="customerName" />
+    </div>
+
+    <div>
+        Your email address:
+        <input type="text" name="customerEmail" />
+    </div>
+
+    <div>
+        Details about your problem: <br />
+        <textarea name="customerRequest" cols="45" rows="4"></textarea>
+    </div>
+
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Employer }) |
     @Html.ActionLink("Back to List", "Index")
