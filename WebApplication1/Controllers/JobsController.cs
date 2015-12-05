@@ -163,7 +163,7 @@ namespace WebApplication1.Controllers
             }
 
 
-            return RedirectToAction("Thankyou");
+            return RedirectToAction("Index");
         }
     }
 }
