@@ -134,12 +134,12 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Contact(ContactViewModel vm)
-        {
+        {/*
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Create");
+                return View();
             }
-
+            */
             //Send Email
             var message = new MailMessage();
             message.To.Add(new MailAddress("shedges1995@gmail.com"));  // replace with valid value 
