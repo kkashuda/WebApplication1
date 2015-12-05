@@ -137,12 +137,12 @@ namespace WebApplication1.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("Create");
             }
 
             //Send Email
             var message = new MailMessage();
-            message.To.Add(new MailAddress("emilyhuynh101@gmail.com"));  // replace with valid value 
+            message.To.Add(new MailAddress("shedges1995@gmail.com"));  // replace with valid value 
             message.From = new MailAddress("shedges1995@gmail.com");  // replace with valid value
             message.Subject = "Thanks for your message!";
             message.Body = string.Format("<p><b>From:</b> {0} ({1})</p><p><b>Mesage:</b> {2}</p>", vm.Name, vm.Email, vm.Message);
