@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Submit Email Request for Assistance</h2>
-    <form method="post" action="ProcessRequest.cshtml">
+    <form method="post" action="@Url.Action("sendEmail","JobsController")">
         <div>
             Your name:
             <input type="text" name="customerName" />

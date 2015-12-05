@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
@@ -103,6 +104,34 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
             return View(job);
+        }
+        public ActionResult sendEmail() {
+
+            var customerName = Request["customerName"];
+            var customerEmail = Request["customerEmail"];
+            var customerRequest = Request["customerRequest"];
+            var errorMessage = "";
+            var debuggingFlag = false;
+            try
+            {
+                // Initialize WebMail helper
+                WebMail.SmtpServer = "smtp.sendgrid.net";
+                WebMail.SmtpPort = 25;
+                WebMail.UserName = "azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com";
+                WebMail.Password = "PJ7sw43N8Ev77L2";
+                WebMail.From = "avhedges@crimson.ua.edu";
+
+                // Send email
+                WebMail.Send(to: customerEmail,
+                    subject: "Help request from - " + customerName,
+                    body: customerRequest
+                );
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+            }
+            return View();
         }
 
         // POST: Jobs/Delete/5
