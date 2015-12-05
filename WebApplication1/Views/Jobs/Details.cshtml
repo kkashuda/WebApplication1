@@ -1,4 +1,38 @@
-﻿@using System;
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request for Assistance</title>
+</head>
+<body>
+    <h2>Submit Email Request for Assistance</h2>
+    <form method="post" action="ProcessRequest.cshtml">
+        <div>
+            Your name:
+            <input type="text" name="customerName" />
+        </div>
+
+        <div>
+            Your email address:
+            <input type="text" name="customerEmail" />
+        </div>
+
+        <div>
+            Details about your problem: <br />
+            <textarea name="customerRequest" cols="45" rows="4"></textarea>
+        </div>
+
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+@*
+@using System;
 @using System.Net;
 @using System.Net.Mail;
 @using SendGrid;
@@ -84,3 +118,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Employer }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+*@
