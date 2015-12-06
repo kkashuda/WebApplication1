@@ -10,24 +10,24 @@ Application
     <h4>Send your comments.</h4>
     <hr />
     <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.FromName)
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstName)
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.FromEmail, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.FromEmail, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FromEmail, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.FromEmail)
+            @Html.TextBoxFor(model => model.FromEmail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FromEmail)
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextAreaFor(m => m.PhoneNumber, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.PhoneNumber)
+            @Html.TextAreaFor(model => model.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
         </div>
     </div>
     <div class="form-group">
