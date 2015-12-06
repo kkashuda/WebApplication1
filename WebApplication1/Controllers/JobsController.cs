@@ -15,6 +15,10 @@ namespace WebApplication1.Controllers
 {
     public class JobsController : Controller
     {
+        SNum: 555 Dept: 5 
+Dept: 10  Manager: 555 SNum: 777 Age: 20
+SNum: 888 Age: 18
+Age: 10 Manager: 555 SNum: 222
         private JobDBContext db = new JobDBContext();
 
         // GET: Jobs
