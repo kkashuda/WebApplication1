@@ -3,12 +3,13 @@
 @using System.Net;
 @using System.Net.Mail;
 @using SendGrid;
-@model Tuple<WebApplication1.Models.Job, WebApplication1.Models.ContactViewModel>
+@model Tuple<WebApplication1.Models.Job, WebApplication1.Models.EmailFormModel>
 
 @*@model WebApplication1.Models.DetailParentModel*@
 
 @{
     ViewBag.Title = "Details";
+    var EmployerEmail = Model.Item1.Email;
 
     }
 
@@ -62,40 +63,92 @@
 
     </dl>
 </div>
-@*
-@using (Html.BeginForm(Model))
+
+@using (Html.BeginForm("ApplyToJob","JobsController", EmployerEmail))
 {
+    @Html.AntiForgeryToken()
+    <h4>Send your comments.</h4>
+    <hr />
     <div class="form-group">
-        @Html.LabelFor(model => Model.Item2.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(tuple => tuple.Item2.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(model => Model.Item2.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => Model.Item2.Name, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(tuple => tuple.Item2.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.FirstName)
         </div>
     </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => Model.Item2.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => Model.Item2.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => Model.Item2.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(tuple => tuple.Item2.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(tuple => tuple.Item2.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.LastName)
+        </div>
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => Model.Item2.Message, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => Model.Item2.Message, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => Model.Item2.Message, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Send" class="btn btn-default" />
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(tuple => tuple.Item2.FromEmail, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(tuple => tuple.Item2.FromEmail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.FromEmail)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tuple => tuple.Item2.PermanentAddress, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(tuple => tuple.Item2.PermanentAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.PermanentAddress)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tuple => tuple.Item2.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(tuple => tuple.Item2.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.PhoneNumber)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tuple => tuple.Item2.WorkExperience, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(tuple => tuple.Item2.WorkExperience, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.WorkExperience)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tuple => tuple.Item2.Skills, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(tuple => tuple.Item2.Skills, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.Skills)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tuple => tuple.Item2.AdditionalComments, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(tuple => tuple.Item2.AdditionalComments, new { @class = "form-control" })
+            @Html.ValidationMessageFor(tuple => tuple.Item2.AdditionalComments)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Send" />
+        </div>
+    </div>
 }
-    *@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+    
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Employer }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Employer }) |*@
+    @Html.ActionLink("Back to List", "Index") | 
+    @*@Html.ActionLink("Apply to this job", "Apply")*@
 </p>

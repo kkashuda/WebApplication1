@@ -1,0 +1,85 @@
+﻿@model WebApplication1.Models.EmailFormModel
+@{
+    ViewBag.Title = "Apply";
+}
+<h2>@ViewBag.Title.</h2>
+Application
+@using (Html.BeginForm(Model))
+{
+    @Html.AntiForgeryToken()
+    <h4>Send your comments.</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FromEmail, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FromEmail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FromEmail)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PermanentAddress, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.PermanentAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PermanentAddress)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WorkExperience, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.WorkExperience, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.WorkExperience)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Skills, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Skills, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Skills)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AdditionalComments, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.AdditionalComments, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AdditionalComments)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Send" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

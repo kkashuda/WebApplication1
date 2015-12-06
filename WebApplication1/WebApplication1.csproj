@@ -285,6 +285,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\DetailParentModel.cs" />
+    <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -388,6 +389,8 @@
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs\ProcessRequest.cshtml" />
+    <Content Include="Views\Jobs\Apply.cshtml" />
+    <Content Include="Views\Jobs\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

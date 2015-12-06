@@ -40,7 +40,7 @@ Age: 10 Manager: 555 SNum: 222
                 return HttpNotFound();
             }
             //return View(job);
-            var tuple = new Tuple<Job, ContactViewModel>(new Job(), new ContactViewModel());
+            var tuple = new Tuple<Job, EmailFormModel>(job, new EmailFormModel());
             return View(tuple);
         
     }
@@ -136,38 +136,60 @@ Age: 10 Manager: 555 SNum: 222
             base.Dispose(disposing);
         }
 
+        /*
+        *
+            {0} First Name
+            {1} Last Name
+            {2} Applicant's Email
+            {3} Permanent Address
+            {4} Phone Number
+            {5} Previous Work Experience
+            {6} Relevant Skills
+            {7} Additional Comments
+        *
+        */
+
         [HttpPost]
-        public async Task<ActionResult> Contact(ContactViewModel vm)
+        [ValidateAntiForgeryToken]
+        [ActionName("ApplyToJob")]
+        public async Task<ActionResult> ApplyToJob(EmailFormModel model, string recipient)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View();
-            }
+                var body = "<p><strong>Email From:</strong> {0} {1} ({2} | {4})</p><p><strong>Address:</strong> {3}</p><p><strong>Previous Work Experience</strong></p><p>{5}</p><p><strong>Relevant Skills:</strong></p><p>{6}</p><p><strong>Additional Comments:</strong></p><p>{7}</p>";
+                var message = new MailMessage();
+                message.To.Add(new MailAddress(recipient));  // replace with Employer email
+                message.From = new MailAddress("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com");  // replace with from email
+                message.Subject = "GeoJob | Job Application Submission";
+                message.Body = string.Format(body, model.FirstName, model.LastName, model.FromEmail, model.PermanentAddress, model.PhoneNumber, model.WorkExperience, model.Skills, model.AdditionalComments);
+                message.IsBodyHtml = true;
 
-            //Send Email
-            var message = new MailMessage();
-            message.To.Add(new MailAddress("emilyhuynh101@gmail.com"));  // replace with valid value 
-            message.From = new MailAddress("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com");  // replace with valid value
-            message.Subject = "Thanks for your message!";
-            message.Body = string.Format("<p><b>From:</b> {0} ({1})</p><p><b>Mesage:</b> {2}</p>", vm.Name, vm.Email, vm.Message);
-            message.IsBodyHtml = true;
-
-            using (var smtp = new SmtpClient())
-            {
-                var credential = new NetworkCredential
+                using (var smtp = new SmtpClient())
                 {
-                    UserName = "azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com",  // replace with valid value
-                    Password = "PJ7sw43N8Ev77L2"  // replace with valid value
-                };
-                smtp.Credentials = credential;
-                smtp.Host = "smtp.sendgrid.net";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                await smtp.SendMailAsync(message);
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com",  // replace with valid value
+                        Password = "PJ7sw43N8Ev77L2"  // replace with valid value
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.sendgrid.net";
+                    smtp.Port = 25;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                    return RedirectToAction("Sent");
+                }
             }
+            return RedirectToAction("Index");
+        }
 
+        public ActionResult Sent()
+        {
+            return View();
+        }
 
-            return RedirectToAction("Thankyou");
+        public ActionResult Apply()
+        {
+            return View();
         }
     }
 }
