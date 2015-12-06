@@ -132,17 +132,30 @@ namespace WebApplication1.Controllers
             base.Dispose(disposing);
         }
 
+        /*
+        *
+            {0} First Name
+            {1} Last Name
+            {2} Applicant's Email
+            {3} Permanent Address
+            {4} Phone Number
+            {5} Previous Work Experience
+            {6} Relevant Skills
+            {7} Additional Comments
+        *
+        */
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Apply(EmailFormModel model)
         {
             if (ModelState.IsValid)
             {
-                var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+                var body = "<p><strong>Email From:</strong> {0} {1} ({2} | {4})</p><p><strong>Address:</strong> {3}</p><p><strong>Previous Work Experience</strong></p><p>{5}</p><p><strong>Relevant Skills:</strong></p><p>{6}</p><p><strong>Additional Comments:</strong></p><p>{7}</p>";
                 var message = new MailMessage();
                 message.To.Add(new MailAddress("emilyhuynh101@gmail.com"));  // replace with valid value 
                 message.From = new MailAddress("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com");  // replace with valid value
-                message.Subject = "Your email subject";
+                message.Subject = "GeoJob | Job Application Submission";
                 message.Body = string.Format(body, model.FirstName, model.LastName, model.FromEmail, model.PhoneNumber);
                 message.IsBodyHtml = true;
 
