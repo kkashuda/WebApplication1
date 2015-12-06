@@ -161,7 +161,7 @@ namespace WebApplication1.Controllers
                     return RedirectToAction("Sent");
                 }
             }
-            return View("Error");
+            return View("Index");
         }
 
         public ActionResult Sent()
