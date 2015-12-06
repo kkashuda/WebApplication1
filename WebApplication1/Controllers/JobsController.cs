@@ -154,11 +154,15 @@ namespace WebApplication1.Controllers
                 {
                     UserName = "shedges1995@gmail.com",  // replace with valid value
                     Password = "inuyasha12"  // replace with valid value
-                };
+                   
+                   
+
+            };
                 smtp.Credentials = credential;
+                smtp.EnableSsl = true;
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 465;
-                smtp.EnableSsl = true;
+                //smtp.EnableSsl = true;
                 await smtp.SendMailAsync(message);
             }
 
