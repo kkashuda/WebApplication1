@@ -36,5 +36,7 @@ namespace WebApplication1.Models
 
         [Display(Name = "Additional Comments")]
         public string AdditionalComments { get; set; }
+
+        public string EmployerEmail { get; set; }
     }
 }
