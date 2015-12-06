@@ -134,7 +134,7 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Contact(EmailFormModel model)
+        public async Task<ActionResult> Apply(EmailFormModel model)
         {
             if (ModelState.IsValid)
             {
