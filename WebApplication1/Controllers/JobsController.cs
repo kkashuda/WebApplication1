@@ -156,7 +156,7 @@ namespace WebApplication1.Controllers
                 message.To.Add(new MailAddress("emilyhuynh101@gmail.com"));  // replace with valid value 
                 message.From = new MailAddress("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com");  // replace with valid value
                 message.Subject = "GeoJob | Job Application Submission";
-                message.Body = string.Format(body, model.FirstName, model.LastName, model.FromEmail, model.PhoneNumber);
+                message.Body = string.Format(body, model.FirstName, model.LastName, model.FromEmail, model.PermanentAddress, model.PhoneNumber, model.WorkExperience, model.Skills, model.AdditionalComments);
                 message.IsBodyHtml = true;
 
                 using (var smtp = new SmtpClient())
