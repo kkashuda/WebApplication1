@@ -6,21 +6,19 @@
 @model WebApplication1.Models.Job
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Apply";
     WebApplication1.Models.EmailFormModel eModel = new WebApplication1.Models.EmailFormModel();
     Session["eEmail"] = Model.Email;
 }
 
 
-<h2><font color ="#f78c6c" face="monospace">Apply to Job:</font></h2>
-
-
-<div style="float: left; width: 40%;">
-
-
-
-
+<h2>Apply to Job</h2>
+<div class="row">
     <hr />
+<div class="col-md-6">
+
+
+    
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Title)
@@ -67,10 +65,10 @@
 </div>
 
 
-<div style="float: left; width:60%;">
+<div class="col-md-6">
 @Html.Partial("~/Views/Jobs/Apply.cshtml", eModel)
 </div>
-    
+ </div>   
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Employer }) |*@
     <a href="@Url.Action("Index","Jobs")" class="btn btn-success">Back to Jobs</a>

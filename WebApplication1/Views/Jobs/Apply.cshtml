@@ -11,72 +11,72 @@
 
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
-        <div class="col-md-6">
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+        
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "First"})
             @Html.ValidationMessageFor(model => model.FirstName)
-        </div>
+        
     </div>
   
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
-        <div class="col-md-6">
-            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+        
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Last" })
             @Html.ValidationMessageFor(model => model.LastName)
-        </div>
+        
     </div>
     
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.FromEmail, new { @class = "control-label" })
-        <div class="col-md-6">
-            @Html.TextBoxFor(model => model.FromEmail, new { @class = "form-control" })
+        
+            @Html.TextBoxFor(model => model.FromEmail, new { @class = "form-control", @placeholder = "me@email.com"})
             @Html.ValidationMessageFor(model => model.FromEmail)
-        </div>
+        
     </div>
 
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.PermanentAddress, new { @class = "control-label" })
-        <div class="col-md-6">
-            @Html.TextBoxFor(model => model.PermanentAddress, new { @class = "form-control" })
+        
+            @Html.TextBoxFor(model => model.PermanentAddress, new { @class = "form-control", @placeholder = "1234 Example Drive, City ST 12345" })
             @Html.ValidationMessageFor(model => model.PermanentAddress)
-        </div>
+       
     </div>
  
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label" })
-        <div class="col-md-6">
-            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+        
+            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @placeholder = "123-456-7890" })
             @Html.ValidationMessageFor(model => model.PhoneNumber)
-        </div>
+       
     </div>
     
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.WorkExperience, new { @class = " control-label" })
-        <div class="col-md-6">
-            @Html.TextAreaFor(model => model.WorkExperience, new { @class = "form-control" })
+        
+            @Html.TextAreaFor(model => model.WorkExperience, new { @class = "form-control", @placeholder = "Cashier at store, Sales associate in mall, ..." })
             @Html.ValidationMessageFor(model => model.WorkExperience)
-        </div>
+    
     </div>
 
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.Skills, new { @class =  "control-label" })
-        <div class="col-md-6">
-            @Html.TextAreaFor(model => model.Skills, new { @class = "form-control" })
+      
+            @Html.TextAreaFor(model => model.Skills, new { @class = "form-control", @placeholder = "Cashiering, arithmetic, ..." })
             @Html.ValidationMessageFor(model => model.Skills)
-        </div>
+
     </div>
 
     <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.AdditionalComments, new { @class = "control-label" })
-        <div class="col-md-6">
+        
             @Html.TextAreaFor(model => model.AdditionalComments, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.AdditionalComments)
-        </div>
+      
     </div>
 
     <div class="form-group" style="margin-bottom: 5px;">
-        <div class="col-md-offset-2 col-md-10">
+        
             <input type="submit" class="btn btn-success" value="Send" />
-        </div>
+        
     </div>
 }
 
