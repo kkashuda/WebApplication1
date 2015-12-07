@@ -64,9 +64,8 @@
     </dl>
 </div>
 
-@using (Html.BeginForm(Model.Item2))
+@using (Html.BeginForm("ApplyToJob","JobsController", EmployerEmail))
 {
-    @Html.Hidden("recipient", Model.Item1.Email);
     @Html.AntiForgeryToken()
     <h4>Send your comments.</h4>
     <hr />
