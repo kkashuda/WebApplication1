@@ -9,11 +9,11 @@
 @{
     
     ViewBag.Title = "Details";
-    WebApplication1.Models.EmailFormModel eModel = new WebApplication1.Models.EmailFormModel();
+   @*WebApplication1.Models.EmailFormModel eModel = new WebApplication1.Models.EmailFormModel();
     eModel.EmployerEmail = Model.Email;
     //var EmployerEmail = Model.Job.Email;
 
-    }
+    *@}
 
 
 <h2>Apply to Job</h2>
@@ -64,7 +64,7 @@
 
     </dl>
 </div>
-@Html.Partial("~/Views/Jobs/Apply.cshtml", eModel)
+@*@Html.Partial("~/Views/Jobs/Apply.cshtml", eModel)*@
 @*
 @using (Html.BeginForm(Model.EmailFormModel))
 {
