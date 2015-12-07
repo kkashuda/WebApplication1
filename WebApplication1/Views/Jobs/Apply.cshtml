@@ -2,31 +2,30 @@
 @{
     ViewBag.Title = "Apply";
 }
-<h2>@ViewBag.Title.</h2>
-Application
+
 @using (Html.BeginForm("Details"))
 {
-    
+   
     @Html.AntiForgeryToken()
-    <h4>Send your comments.</h4>
-    <hr />
-    <div class="form-group">
+    
+
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.FirstName)
         </div>
     </div>
-
-    <div class="form-group">
+  
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.LastName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.LastName)
         </div>
     </div>
-
-    <div class="form-group">
+    
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.FromEmail, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.FromEmail, new { @class = "form-control" })
@@ -34,23 +33,23 @@ Application
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.PermanentAddress, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.PermanentAddress, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.PermanentAddress)
         </div>
     </div>
-
-    <div class="form-group">
+ 
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.PhoneNumber)
         </div>
     </div>
-
-    <div class="form-group">
+    
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.WorkExperience, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.WorkExperience, new { @class = "form-control" })
@@ -58,7 +57,7 @@ Application
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.Skills, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.Skills, new { @class = "form-control" })
@@ -66,7 +65,7 @@ Application
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 5px;">
         @Html.LabelFor(model => model.AdditionalComments, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.AdditionalComments, new { @class = "form-control" })
@@ -74,9 +73,9 @@ Application
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 5px;">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Send" />
+            <input type="submit" class="btn btn-success" value="Send" />
         </div>
     </div>
 }
