@@ -159,7 +159,7 @@ namespace WebApplication1.Controllers
             {
                 var body = "<p><strong>Email From:</strong> {0} {1} ({2} | {4})</p><p><strong>Address:</strong> {3}</p><p><strong>Previous Work Experience</strong></p><p>{5}</p><p><strong>Relevant Skills:</strong></p><p>{6}</p><p><strong>Additional Comments:</strong></p><p>{7}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("emilyhuynh101@gmail.com"));  // replace with Employer email
+                message.To.Add(new MailAddress(model.EmployerEmail));  // replace with Employer email
                 message.From = new MailAddress("azure_44942b7045ba921d2d3d28e51f4cb8c5@azure.com");  // replace with from email
                 message.Subject = "GeoJob | Job Application Submission";
                 message.Body = string.Format(body, model.FirstName, model.LastName, model.FromEmail, model.PermanentAddress, model.PhoneNumber, model.WorkExperience, model.Skills, model.AdditionalComments);
