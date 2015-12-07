@@ -13,6 +13,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [AllowAnonymous]
     public class JobsController : Controller
     {
         private JobDBContext db = new JobDBContext();

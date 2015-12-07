@@ -17,9 +17,19 @@
         window.appInsights=appInsights;
         appInsights.trackPageView();
     </script>
+    <style type="text/css">
+        .navbar a {
+            transition: color 0.5s ease;
+            color: #ffffff !important;
+        }
+
+        .navbar a:hover {
+            color: #333333 !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background: #a0bc6f;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,10 +41,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                    <li>@Html.ActionLink("Create", "Create", "Jobs")</li>
+                    <li>@Html.ActionLink("Apply", "Index", "Jobs")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+               @* @Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
@@ -43,7 +53,7 @@
         @RenderSection("SPAViews", required: false)
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - GeoJob</p>
         </footer>
     </div>
 
