@@ -4,12 +4,13 @@
 @using System.Net.Mail;
 @using SendGrid;
 @*@model Tuple<WebApplication1.Models.Job, WebApplication1.Models.EmailFormModel>*@
-
 @model WebApplication1.Models.Job
-
+@*@model WebApplication1.Models.DetailParentModel*@
 @{
+    
     ViewBag.Title = "Details";
-   // var EmployerEmail = Model.Job.Email;
+    WebApplication1.Models.EmailFormModel eModel = new WebApplication1.Models.EmailFormModel();
+    //var EmployerEmail = Model.Job.Email;
 
     }
 
@@ -21,52 +22,53 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Job.Title)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Job.Title)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Job.Description)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Job.Description)
+            @Html.DisplayFor(model => model.Description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Job.PayRate)
+            @Html.DisplayNameFor(model => model.PayRate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Job.PayRate)
+            @Html.DisplayFor(model => model.PayRate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Job.City)
+            @Html.DisplayNameFor(model => model.City)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Job.City)
+            @Html.DisplayFor(model => model.City)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Job.State)
+            @Html.DisplayNameFor(model => model.State)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Job.State)
+            @Html.DisplayFor(model => model.State)
         </dd>
         
 
     </dl>
 </div>
-
-@using (Html.BeginForm(@Model.EmailFormModel))
+@Html.Partial("~/Views/Jobs/Apply.cshtml")
+@*
+@using (Html.BeginForm(Model.EmailFormModel))
 {
-    @*Html.Hidden("recipient", Model.Item1.Email);*@
+    @*Html.Hidden("recipient", Model.Item1.Email);
     @Html.AntiForgeryToken()
     <h4>Send your comments.</h4>
     <hr />
@@ -146,7 +148,7 @@
 }
 
 
-
+*@
     
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Employer }) |*@

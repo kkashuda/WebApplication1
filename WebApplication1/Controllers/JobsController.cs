@@ -36,11 +36,12 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
 
-            DetailParentModel model = new DetailParentModel();
-            model.Job = job;
-            model.EmailFormModel = new EmailFormModel();
-            return View("Details", model);
-            //return View(job);
+            //DetailParentModel model = new DetailParentModel();
+            //model.Job = job;
+            //model.EmailFormModel = new EmailFormModel();
+            //model.EmailFormModel.FirstName = "Initialzed";
+            //return View("Details", model);
+            return View(job);
             //var tuple = new Tuple<Job, EmailFormModel>(job, new EmailFormModel());
             //return View(tuple);
         
