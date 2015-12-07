@@ -64,7 +64,7 @@
     </dl>
 </div>
 
-@using (Html.BeginForm(Model.EmailFormModel))
+@using (Html.BeginForm(@Model.EmailFormModel))
 {
     @*Html.Hidden("recipient", Model.Item1.Email);*@
     @Html.AntiForgeryToken()
