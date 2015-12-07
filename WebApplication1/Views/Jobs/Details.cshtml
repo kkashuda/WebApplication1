@@ -3,13 +3,13 @@
 @using System.Net;
 @using System.Net.Mail;
 @using SendGrid;
-@model Tuple<WebApplication1.Models.Job, WebApplication1.Models.EmailFormModel>
+@*@model Tuple<WebApplication1.Models.Job, WebApplication1.Models.EmailFormModel>*@
 
-@*@model WebApplication1.Models.DetailParentModel*@
+@model WebApplication1.Models.DetailParentModel
 
 @{
     ViewBag.Title = "Details";
-    var EmployerEmail = Model.Item1.Email;
+    var EmployerEmail = Model.Job.Email;
 
     }
 
@@ -21,115 +21,116 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(tuple => tuple.Item1.Title)
+            @Html.DisplayNameFor(model => model.Job.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(tuple => tuple.Item1.Title)
+            @Html.DisplayFor(model => model.Job.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(tuple => tuple.Item1.Description)
+            @Html.DisplayNameFor(model => model.Job.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(tuple => tuple.Item1.Description)
+            @Html.DisplayFor(model => model.Job.Description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(tuple => tuple.Item1.PayRate)
+            @Html.DisplayNameFor(model => model.Job.PayRate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(tuple => tuple.Item1.PayRate)
+            @Html.DisplayFor(model => model.Job.PayRate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(tuple => tuple.Item1.City)
+            @Html.DisplayNameFor(model => model.Job.City)
         </dt>
 
         <dd>
-            @Html.DisplayFor(tuple => tuple.Item1.City)
+            @Html.DisplayFor(model => model.Job.City)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(tuple => tuple.Item1.State)
+            @Html.DisplayNameFor(model => model.Job.State)
         </dt>
 
         <dd>
-            @Html.DisplayFor(tuple => tuple.Item1.State)
+            @Html.DisplayFor(model => model.Job.State)
         </dd>
         
 
     </dl>
 </div>
 
-@using (Html.BeginForm("ApplyToJob","JobsController", EmployerEmail))
+@using (Html.BeginForm(Model.EmailFormModel))
 {
+    @*Html.Hidden("recipient", Model.Item1.Email);*@
     @Html.AntiForgeryToken()
     <h4>Send your comments.</h4>
     <hr />
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.FirstName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(tuple => tuple.Item2.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.FirstName)
+            @Html.TextBoxFor(model => model.EmailFormModel.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.FirstName)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.LastName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.LastName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(tuple => tuple.Item2.LastName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.LastName)
+            @Html.TextBoxFor(model => model.EmailFormModel.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.LastName)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.FromEmail, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.FromEmail, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(tuple => tuple.Item2.FromEmail, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.FromEmail)
+            @Html.TextBoxFor(model => model.EmailFormModel.FromEmail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.FromEmail)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.PermanentAddress, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.PermanentAddress, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(tuple => tuple.Item2.PermanentAddress, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.PermanentAddress)
+            @Html.TextBoxFor(model => model.EmailFormModel.PermanentAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.PermanentAddress)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.PhoneNumber, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.PhoneNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(tuple => tuple.Item2.PhoneNumber, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.PhoneNumber)
+            @Html.TextBoxFor(model => model.EmailFormModel.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.PhoneNumber)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.WorkExperience, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.WorkExperience, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextAreaFor(tuple => tuple.Item2.WorkExperience, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.WorkExperience)
+            @Html.TextAreaFor(model => model.EmailFormModel.WorkExperience, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.WorkExperience)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.Skills, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.Skills, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextAreaFor(tuple => tuple.Item2.Skills, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.Skills)
+            @Html.TextAreaFor(model => model.EmailFormModel.Skills, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.Skills)
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(tuple => tuple.Item2.AdditionalComments, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.EmailFormModel.AdditionalComments, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextAreaFor(tuple => tuple.Item2.AdditionalComments, new { @class = "form-control" })
-            @Html.ValidationMessageFor(tuple => tuple.Item2.AdditionalComments)
+            @Html.TextAreaFor(model => model.EmailFormModel.AdditionalComments, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailFormModel.AdditionalComments)
         </div>
     </div>
 
