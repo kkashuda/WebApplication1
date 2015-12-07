@@ -4,8 +4,9 @@
 }
 <h2>@ViewBag.Title.</h2>
 Application
-@using (Html.BeginForm(Model))
+@using (Html.BeginForm("Details"))
 {
+    
     @Html.AntiForgeryToken()
     <h4>Send your comments.</h4>
     <hr />
