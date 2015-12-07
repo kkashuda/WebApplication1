@@ -8,7 +8,7 @@ namespace WebApplication1.Models
 {
     public class DetailParentModel
     {
-        public ContactViewModel ContactViewModel { get; set; }
+        public EmailFormModel EmailFormModel { get; set; }
         public Job Job { get; set; }
     }
 }

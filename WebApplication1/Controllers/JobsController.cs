@@ -35,9 +35,9 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            //return View(job);
-            var tuple = new Tuple<Job, EmailFormModel>(job, new EmailFormModel());
-            return View(tuple);
+            return View(job);
+            //var tuple = new Tuple<Job, EmailFormModel>(job, new EmailFormModel());
+            //return View(tuple);
         
     }
 
@@ -147,7 +147,7 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Details(EmailFormModel model, string recipient)
+        public async Task<ActionResult> Details(EmailFormModel model)
         {
             if (ModelState.IsValid)
             {
